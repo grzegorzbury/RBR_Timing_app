@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rally Competition</title>
+</head>
+<body>
+    <h1>Rally Competition Dashboard</h1>
+    
+    <h2>Rallies</h2>
+    <ul>
+        {% for rally in rallies %}
+            <li>
+                <a href="{{ url_for('rally_results', rally_id=rally.id) }}">{{ rally.name }}</a> - 
+                <a href="{{ url_for('plot', rally_id=rally.id) }}">View Plot</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+    <h2>Add Entries</h2>
+    <ul>
+        <li><a href="{{ url_for('add_driver') }}">Add Driver</a></li>
+        <li><a href="{{ url_for('add_stage') }}">Add Stage</a></li>
+        <li><a href="{{ url_for('add_car') }}">Add Car</a></li>
+        <li><a href="{{ url_for('add_rally') }}">Add Rally</a></li>
+        <li><a href="{{ url_for('add_time') }}">Add Rally Time</a></li>
+    </ul>
+</body>
+</html>

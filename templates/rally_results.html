@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rally Results</title>
+</head>
+<body>
+    <h1>Results for {{ rally.name }}</h1>
+    
+    {% for stage_number, (stage_name, times) in results_by_stage_number.items() %}
+        <h2>{{ stage_number }} - {{ stage_name }}</h2>
+        <table border="1">
+            <tr>
+                <th>Position</th>
+                <th>Driver</th>
+                <th>Car</th>
+                <th>Time (HH:MM:SS.SS)</th>
+            </tr>
+            {% for position, time in enumerate(times, start=1) %}
+                <tr>
+                    <td>{{ position }}</td>
+                    <td>{{ time.driver.name }}</td>
+                    <td>{{ time.car.name }} ({{ time.car.car_class }})</td>
+                    <td>{{ time.time }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endfor %}
+    
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+</body>
+</html>

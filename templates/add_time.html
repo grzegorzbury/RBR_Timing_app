@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Rally Time</title>
+</head>
+<body>
+    <h1>Add Rally Time</h1>
+    <form action="{{ url_for('add_time') }}" method="post">
+        <label for="rally">Select Rally:</label>
+        <select name="rally" id="rally">
+            {% for rally in rallies %}
+                <option value="{{ rally.id }}">{{ rally.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="driver">Select Driver:</label>
+        <select name="driver" id="driver">
+            {% for driver in drivers %}
+                <option value="{{ driver.id }}">{{ driver.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="stage">Select Stage:</label>
+        <select name="stage" id="stage">
+            {% for stage in stages %}
+                <option value="{{ stage.id }}">{{ stage.name }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="car">Select Car:</label>
+        <select name="car" id="car">
+            {% for car in cars %}
+                <option value="{{ car.id }}">{{ car.name }} ({{ car.car_class }})</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="stage_number">Stage Number (e.g., SS1, SS2):</label>
+        <input type="text" name="stage_number" id="stage_number" required>
+        <br><br>
+
+        <label for="time">Time (HH:MM:SS.SS):</label>
+        <input type="text" name="time" id="time" required>
+        <br><br>
+
+        <input type="submit" value="Add Time">
+    </form>
+    <a href="{{ url_for('index') }}">Back to Dashboard</a>
+</body>
+</html>
